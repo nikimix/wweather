@@ -1,0 +1,25 @@
+.location-list-move,
+.card-list-move,
+.location-list-enter-active,
+.location-list-leave-active {
+  transition: all 0.2s ease;
+}
+
+.location-list-enter-from,
+.location-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .dialog,
+.modal-leave-to .dialog {
+  transform: scale(0.9);
+}

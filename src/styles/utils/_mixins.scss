@@ -1,0 +1,54 @@
+@mixin text-h1-bold {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.125rem;
+}
+
+@mixin text-h2-bold {
+  font-size: 1.375rem;
+  font-weight: bold;
+  line-height: 1.125rem;
+}
+
+@mixin text-md-regular {
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.125rem;
+}
+
+@mixin text-md-semi-bold {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.125rem;
+}
+
+@mixin text-sm-regular {
+  font-size: 0.875rem;
+  font-weight: normal;
+  line-height: 1.125rem;
+}
+
+@mixin text-sm-semi-bold {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.125rem;
+}
+
+
+@mixin text-sm-bold {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+}
+
+@mixin text-x-sm-regular {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+}
+
+@mixin text-x-sm-bold {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+}
