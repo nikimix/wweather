@@ -45,8 +45,8 @@
     </TransitionGroup>
     <div class="settings__new-location new-location">
       <label
-        class="new-location__label"
         for="location-name"
+        class="new-location__label"
         >Add location</label
       >
       <div class="new-location__field input-wrapper">
@@ -85,7 +85,7 @@
 
 <script lang="ts">
   import {computed, defineComponent, ref} from 'vue';
-  import {getWeatherDataByCity} from '@/api/apiOpenWheaterMap';
+  import {getWeatherData} from '@/api/apiOpenWheaterMap';
   import {PropType} from 'vue';
   import type WeatherData from '@/types/weatherData';
   import WeatherDataPayload from '@/types/weatherDataPayload';
@@ -146,7 +146,7 @@
 
       const addLocation = async () => {
         if (cityName.value) {
-          const payload: WeatherDataPayload = await getWeatherDataByCity({q: cityName.value});
+          const payload: WeatherDataPayload = await getWeatherData({q: cityName.value});
           isUniqueCity.value = !props.locations.find((item) => item.id === payload?.id);
           if (payload.cod === 200 && isUniqueCity.value) {
             emit('addLocation', payload);

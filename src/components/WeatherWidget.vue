@@ -41,7 +41,7 @@
 
 <script lang="ts">
   import {defineComponent, onBeforeMount, ref} from 'vue';
-  import {getWeatherDataByCoordinates} from '@/api/apiOpenWheaterMap';
+  import {getWeatherData} from '@/api/apiOpenWheaterMap';
   import {getLocalStorageItem, removeLocalStorageItem, setLocalStorageItem} from '@/services/localStorage';
   import WidgetCard from '@/components/WidgetCard.vue';
   import WidgetSettings from '@/components/WidgetSettings.vue';
@@ -87,7 +87,7 @@
       });
 
       const addWeatherDataByCoords = async (coords = defaultCoords) => {
-        const payload: WeatherDataPayload = await getWeatherDataByCoordinates(coords);
+        const payload: WeatherDataPayload = await getWeatherData(coords);
         weatherData.value.push(mapWeatherData(payload));
         setLocalStorageItem<Array<WeatherData>>('weatherData', weatherData.value);
       };
@@ -96,6 +96,17 @@
         console.log(payload);
         weatherData.value.push(mapWeatherData(payload));
         setLocalStorageItem<Array<WeatherData>>('weatherData', weatherData.value);
+      };
+
+      const setWeatherDataByCurrentPosition = (): void => {
+        navigator.geolocation.getCurrentPosition(
+            async ({coords}) => {
+              await addWeatherDataByCoords({lat: coords.latitude, lon: coords.longitude});
+            },
+            async () => {
+              await addWeatherDataByCoords();
+            },
+        );
       };
 
       const deleteWeatherDataByIndex = (index: number) => {
@@ -108,16 +119,6 @@
         }
       };
 
-      const setWeatherDataByCurrentPosition = (): void => {
-        navigator.geolocation.getCurrentPosition(
-          async ({coords}) => {
-            await addWeatherDataByCoords({lat: coords.latitude, lon: coords.longitude});
-          },
-          async () => {
-            await addWeatherDataByCoords();
-          },
-        );
-      };
 
       const initWeatherData = () => {
         const data: Array<WeatherData> | undefined = getLocalStorageItem<Array<WeatherData>>('weatherData');
@@ -156,7 +157,6 @@
 
   .widget-board {
     position: relative;
-    width: fit-content;
     padding: 1rem 2rem;
 
     &__action {
@@ -167,8 +167,8 @@
   }
 
   .widget-card-list {
-    display: flex;
+    display: grid;
     gap: 0.5rem;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   }
 </style>
