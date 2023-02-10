@@ -99,6 +99,8 @@
     display: grid;
     gap: 1rem;
     @include mixins.text-sm-regular;
+    box-sizing: border-box;
+    min-width: 16rem;
     padding: 1rem;
     border: 1px solid variables.$color-grey-lighter;
     border-radius: 0.25rem;
@@ -131,7 +133,6 @@
   .weather-data {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    justify-self: center;
     gap: 0.5rem;
 
     &__item {

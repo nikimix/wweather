@@ -99,7 +99,7 @@
     grid-template-rows: auto 1fr auto;
     max-height: calc(100vh - 7.5rem);
     padding: 2.75rem;
-    gap: 2rem;
+    gap: 1rem;
     border-radius: 1.25rem;
     box-shadow: 0 0.125rem 0.5rem rgba(variables.$color-black-hard, 0.33);
     background: variables.$color-white-light;
